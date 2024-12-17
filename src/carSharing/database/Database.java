@@ -31,6 +31,7 @@ public class Database {
 
     public static void addNoleggio(Noleggio noleggio){
         noleggi.put(noleggio.getId(), noleggio);
+
     }
 
 
