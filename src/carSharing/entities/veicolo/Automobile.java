@@ -1,6 +1,6 @@
 package carSharing.entities.veicolo;
 
-import carSharing.entities.patente.TipoPatente;
+import carSharing.entities.utente.TipoPatente;
 
 public class Automobile extends VeicoloMotore {
 
@@ -12,4 +12,5 @@ public class Automobile extends VeicoloMotore {
     public Boolean needCasco() {
         return false;
     }
+
 }

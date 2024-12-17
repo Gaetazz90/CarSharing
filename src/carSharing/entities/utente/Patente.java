@@ -1,6 +1,4 @@
-package carSharing.entities.patente;
-
-import carSharing.entities.Utente;
+package carSharing.entities.utente;
 
 import java.time.LocalDate;
 
@@ -14,8 +12,8 @@ public class Patente {
     private LocalDate dataDiScadenza;
 
 
-    public Patente(Integer id, String numeroPatente, TipoPatente tipoPatente, Utente nomeUtente, LocalDate dataDiScadenza) {
-        this.id = ++id;
+    public Patente(String numeroPatente, TipoPatente tipoPatente, Utente nomeUtente, LocalDate dataDiScadenza) {
+        this.id = ++idTot;
         this.numeroPatente = numeroPatente;
         this.tipoPatente = tipoPatente;
         this.nomeUtente = nomeUtente;
@@ -57,4 +55,6 @@ public class Patente {
     public void setDataDiScadenza(LocalDate dataDiScadenza) {
         this.dataDiScadenza = dataDiScadenza;
     }
+
+
 }

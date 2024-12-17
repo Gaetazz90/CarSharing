@@ -11,4 +11,5 @@ public class Bicicletta extends Veicolo{
     public Boolean needCasco() {
         return true;
     }
+
 }

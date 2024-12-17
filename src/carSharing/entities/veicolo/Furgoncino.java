@@ -1,6 +1,6 @@
 package carSharing.entities.veicolo;
 
-import carSharing.entities.patente.TipoPatente;
+import carSharing.entities.utente.TipoPatente;
 
 public class Furgoncino extends VeicoloMotore{
 
@@ -13,4 +13,5 @@ public class Furgoncino extends VeicoloMotore{
     public Boolean needCasco() {
         return false;
     }
+
 }

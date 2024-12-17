@@ -17,4 +17,5 @@ public final class Coordinate {
     public Double getY() {
         return y;
     }
+
 }

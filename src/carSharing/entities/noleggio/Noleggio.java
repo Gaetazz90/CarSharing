@@ -1,6 +1,6 @@
 package carSharing.entities.noleggio;
 
-import carSharing.entities.Utente;
+import carSharing.entities.utente.Utente;
 import carSharing.entities.veicolo.Veicolo;
 
 import java.time.LocalDateTime;
@@ -35,27 +35,22 @@ public class Noleggio {
     }
 
     public Veicolo getVeicolo() {
-
         return veicolo;
     }
 
     public void setVeicolo(Veicolo veicolo) {
-
         this.veicolo = veicolo;
     }
 
     public Utente getUtente() {
-
         return utente;
     }
 
     public void setUtente(Utente utente) {
-
         this.utente = utente;
     }
 
     public LocalDateTime getStart() {
-
         return start;
     }
 
@@ -67,12 +62,10 @@ public class Noleggio {
     }
 
     public LocalDateTime getEnd() {
-
         return end;
     }
 
     public void setEnd(LocalDateTime end) {
-
         this.end = end;
     }
 

@@ -1,7 +1,7 @@
 package carSharing.mappers;
 
 import carSharing.dtoUtenteRegisterInput.UtenteRegisterRequest;
-import carSharing.entities.Utente;
+import carSharing.entities.utente.Utente;
 
 public class UtenteMapper {
 

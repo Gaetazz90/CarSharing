@@ -1,4 +1,4 @@
-package carSharing.entities.patente;
+package carSharing.entities.utente;
 
 public enum TipoPatente {
 

@@ -1,6 +1,6 @@
 package carSharing.database;
 
-import carSharing.entities.Utente;
+import carSharing.entities.utente.Utente;
 import carSharing.entities.noleggio.Noleggio;
 import carSharing.entities.veicolo.Veicolo;
 
@@ -32,7 +32,6 @@ public class Database {
     public static void addNoleggio(Noleggio noleggio){
         noleggi.put(noleggio.getId(), noleggio);
     }
-
 
 
 }

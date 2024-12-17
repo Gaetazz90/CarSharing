@@ -11,7 +11,7 @@ public class MonopattinoElettrico extends Veicolo {
 
     @Override
     public Boolean needCasco() {
-        return null;
+        return true;
     }
 
     public Double getLivelloBatteria() {
@@ -21,4 +21,5 @@ public class MonopattinoElettrico extends Veicolo {
     public void setLivelloBatteria(Double livelloBatteria) {
         this.livelloBatteria = livelloBatteria;
     }
+
 }

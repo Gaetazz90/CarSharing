@@ -1,6 +1,4 @@
-package carSharing.entities;
-
-import carSharing.entities.patente.Patente;
+package carSharing.entities.utente;
 
 import java.time.LocalDate;
 
@@ -20,7 +18,7 @@ public class Utente {
         this.id = ++idTot;
     };
 
-    public Utente(Integer id, String nome, String cognome, LocalDate dataDiNascita, String codiceFiscale, Boolean hasCasco, Double credito) {
+    public Utente(String nome, String cognome, LocalDate dataDiNascita, String codiceFiscale, Boolean hasCasco) {
         this.id = ++idTot;
         this.nome = nome;
         this.cognome = cognome;
@@ -30,9 +28,10 @@ public class Utente {
         this.credito = 0d;
     }
 
-    public Utente(Integer id, String nome, String cognome, LocalDate dataDiNascita, String codiceFiscale, Patente patente, Boolean hasCasco, Double credito) {
-        this(id, nome, cognome, dataDiNascita, codiceFiscale, hasCasco, credito);
-        this.hasCasco = hasCasco;
+    public Utente(String nome, String cognome, LocalDate dataDiNascita, String codiceFiscale, Patente patente, Boolean hasCasco) {
+        this(nome, cognome, dataDiNascita, codiceFiscale, hasCasco);
+        this.id = ++idTot;
+        this.patente = patente;
         this.credito = 0d;
     }
 
@@ -97,22 +96,22 @@ public class Utente {
         this.credito = credito;
     }
 
-    public void addCredito(Double credito){
-        if(credito > 0){
-            this.credito += credito;
+    public void addCredito(Double creditoAggiunto){
+        if(creditoAggiunto > 0){
+            this.credito += creditoAggiunto;
         }
         else System.out.println("Il credito da aggiungere non può essere < 0");
     }
 
-   public Double subCredito(Double credito){
-       if (credito > this.credito){
-         Double result = credito - this.credito;
+   public Double subCredito(Double creditoDetratto){
+       if (creditoDetratto > this.credito){
+         Double restoDaPagare = creditoDetratto - this.credito;
          this.credito = 0d;
-         return result;
-        }
+         return restoDaPagare;
+       }
         else {
-        this.credito -= credito;
-        return 0d;
+        this.credito -= creditoDetratto;
+        return this.credito;
        }
    }
 
