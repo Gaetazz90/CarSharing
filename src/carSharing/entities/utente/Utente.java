@@ -1,6 +1,13 @@
 package carSharing.entities.utente;
 
+import carSharing.admin.Admin;
+import carSharing.entities.noleggio.Noleggio;
+import carSharing.entities.veicolo.Veicolo;
+import carSharing.exceptions.VeicoloNotFound;
+import carSharing.validators.Validator;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Utente {
 
@@ -14,11 +21,11 @@ public class Utente {
     private Boolean hasCasco;
     private Double credito;
 
-    public Utente(){
-        this.id = ++idTot;
-    };
 
     public Utente(String nome, String cognome, LocalDate dataDiNascita, String codiceFiscale, Boolean hasCasco) {
+        Validator.requireNotBlank(nome);
+        Validator.requireNotBlank(cognome);
+        Validator.requireDateBefore(dataDiNascita, LocalDate.now());
         this.id = ++idTot;
         this.nome = nome;
         this.cognome = cognome;
@@ -113,6 +120,15 @@ public class Utente {
         this.credito -= creditoDetratto;
         return this.credito;
        }
+   }
+
+   public Noleggio attivaNoleggio(Integer id_veicolo) throws VeicoloNotFound {
+        Veicolo veicolo = Admin.getVeicoloById(id_veicolo);
+        if(veicolo == null) throw new VeicoloNotFound("Il veicolo selezionato è inesistente");
+        return null;
+   }
+   public Noleggio attivaNoleggio(Integer id_veicolo, LocalDateTime start){
+        return null;
    }
 
 }

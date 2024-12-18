@@ -2,6 +2,7 @@ package carSharing.entities.noleggio;
 
 import carSharing.entities.utente.Utente;
 import carSharing.entities.veicolo.Veicolo;
+import carSharing.validators.Validator;
 
 import java.time.LocalDateTime;
 
@@ -15,19 +16,22 @@ public class Noleggio {
     private LocalDateTime end;
 
     public Noleggio (Veicolo veicolo, Utente utente) {
+        Validator.requireNotNull(veicolo);
+        Validator.requireNotNull(utente);
         this.id = ++idTot;
         this.veicolo = veicolo;
         this.utente = utente;
         this.start = LocalDateTime.now();
-
     }
 
-    public Noleggio(Veicolo veicolo, Utente utente,LocalDateTime start) {
+    public Noleggio (Veicolo veicolo, Utente utente,LocalDateTime start) {
+        Validator.requireNotNull(veicolo);
+        Validator.requireNotNull(utente);
+        Validator.requireDateAfter(start, LocalDateTime.now());
         this.id = ++idTot;
         this.veicolo = veicolo;
         this.utente = utente;
         this.start = start;
-
     }
 
     public Integer getId() {
@@ -67,6 +71,11 @@ public class Noleggio {
 
     public void setEnd(LocalDateTime end) {
         this.end = end;
+    }
+
+    public Boolean isNoleggioAttivo(){
+        if(this.end == null) return true;
+        return false;
     }
 
 
