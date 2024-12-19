@@ -1,6 +1,7 @@
 package carSharing.entities.veicolo;
 
 import carSharing.entities.utente.TipoPatente;
+import carSharing.validators.Validator;
 
 public abstract class VeicoloMotore extends Veicolo {
 
@@ -10,6 +11,7 @@ public abstract class VeicoloMotore extends Veicolo {
 
     public VeicoloMotore(Double prezzoNoleggio, TipoPatente tipoPatente) {
         super(prezzoNoleggio);
+        Validator.requireNotNull(tipoPatente);
         this.tipoPatente = tipoPatente;
         this.livelloCarburante = 1d;
     }

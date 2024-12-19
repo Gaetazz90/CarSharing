@@ -1,5 +1,7 @@
 package carSharing.entities.utente;
 
+import carSharing.validators.Validator;
+
 import java.time.LocalDate;
 
 public class Patente {
@@ -13,6 +15,10 @@ public class Patente {
 
 
     public Patente(String numeroPatente, TipoPatente tipoPatente, Utente nomeUtente, LocalDate dataDiScadenza) {
+        Validator.matchingPatterns(numeroPatente, "^[A-Z]{2}\\d{6}[A-Z]\\d{3}$\n");
+        Validator.requireDateAfter(dataDiScadenza, LocalDate.now());
+        Validator.requireNotNull(tipoPatente);
+        Validator.requireNotNull(nomeUtente);
         this.id = ++idTot;
         this.numeroPatente = numeroPatente;
         this.tipoPatente = tipoPatente;
