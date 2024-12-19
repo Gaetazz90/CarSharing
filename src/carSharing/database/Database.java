@@ -10,9 +10,9 @@ import java.util.List;
 
 public class Database {
 
-    private static HashMap<Integer, Utente> utenti;
-    private static HashMap<Integer, Veicolo> veicoli;
-    private static HashMap<Integer, Noleggio> noleggi;
+    private static HashMap<Integer, Utente> utenti = new HashMap<>();
+    private static HashMap<Integer, Veicolo> veicoli = new HashMap<>();
+    private static HashMap<Integer, Noleggio> noleggi = new HashMap<>();
 
     public static void addUtente(Utente utente){
         utenti.put(utente.getId(), utente);
@@ -26,23 +26,23 @@ public class Database {
         return veicoli.get(id);
     }
 
+    public static List<Veicolo> getAllVeicoli(){
+        return veicoli.values().stream().toList();
+    }
+
     public static void addNoleggio(Noleggio noleggio){
         noleggi.put(noleggio.getId(), noleggio);
     }
 
     public static List<Noleggio> getNoleggiByVeicoloID(Integer id_veicolo){
-        List<Noleggio> myNoleggi = new ArrayList<>();
+        List<Noleggio> noleggiVeicolo = new ArrayList<>();
         for (Integer id : noleggi.keySet()) {
             Noleggio n = noleggi.get(id);
             if (n.getVeicolo().getId().equals(id_veicolo)){
-                myNoleggi.add(n);
+                noleggiVeicolo.add(n);
             }
         }
-        return myNoleggi;
-    }
-
-    public static List<Veicolo> getAllVeicoli(){
-        return veicoli.values().stream().toList();
+        return noleggiVeicolo;
     }
 
 

@@ -4,9 +4,8 @@ import carSharing.entities.utente.TipoPatente;
 
 public class Furgoncino extends VeicoloMotore{
 
-
-    public Furgoncino(Double prezzoNoleggio, TipoPatente tipoPatente) {
-        super(prezzoNoleggio, tipoPatente);
+    public Furgoncino(Double prezzoNoleggio, TipoPatente tipoPatente, String targa) {
+        super(prezzoNoleggio, tipoPatente, targa);
     }
 
     @Override

@@ -74,9 +74,17 @@ public class Noleggio {
     }
 
     public Boolean isNoleggioAttivo(LocalDateTime time){
-        if(this.end == null && this.start.isBefore(time)) return true;
+        if(this.start.isBefore(time) &&  this.end == null ) return true;
         return false;
     }
 
-
+    @Override
+    public String toString() {
+        return "Noleggio{" +
+                "utente=" + utente +
+                ", veicolo=" + veicolo +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
+    }
 }

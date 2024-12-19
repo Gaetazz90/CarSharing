@@ -32,21 +32,21 @@ public class Utente {
         Validator.requireNotBlank(nome);
         Validator.requireNotBlank(cognome);
         Validator.requireDateBefore(dataDiNascita, LocalDate.now());
-        Validator.matchingPatterns(codiceFiscale, "^[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]$\n");
+        Validator.matchingPatterns(codiceFiscale, "^[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]$");
         this.id = ++idTot;
         this.nome = nome;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
         this.codiceFiscale = codiceFiscale;
         this.hasCasco = hasCasco;
-        this.credito = 0d;
+        this.credito = 10d;
     }
 
     public Utente(String nome, String cognome, LocalDate dataDiNascita, String codiceFiscale, Patente patente, Boolean hasCasco) {
         this(nome, cognome, dataDiNascita, codiceFiscale, hasCasco);
         this.id = ++idTot;
         this.patente = patente;
-        this.credito = 0d;
+        this.credito = 10d;
     }
 
 
@@ -130,30 +130,33 @@ public class Utente {
    }
 
    public Noleggio attivaNoleggio(Integer id_veicolo) throws VeicoloNotFound, VeicoloNotAvailable {
-        Veicolo veicolo = Admin.getVeicoloById(id_veicolo);
-        if(veicolo == null) throw new VeicoloNotFound("Il veicolo selezionato è inesistente");
-        if(!veicolo.isDisponibile(LocalDateTime.now())){
-            throw new VeicoloNotAvailable("Veicolo già prenotato...non disponibile");
+        Veicolo veicoloDaPrenotare = Admin.getVeicoloById(id_veicolo);
+        if(veicoloDaPrenotare  == null) throw new VeicoloNotFound("Il veicolo selezionato è inesistente");
+        if(!veicoloDaPrenotare .isDisponibile(LocalDateTime.now())){
+            throw new VeicoloNotAvailable("Veicolo non disponibile perchè già prenotato...");
         }
-        Noleggio myNoleggio = new Noleggio(veicolo, this);
+        Noleggio myNoleggio = new Noleggio(veicoloDaPrenotare, this);
         Admin.insertNoleggio(myNoleggio);
+        System.out.println("Il noleggio è andato a buon fine");
         return myNoleggio;
    }
    public Noleggio attivaNoleggio(Integer id_veicolo, LocalDateTime start) throws VeicoloNotFound, VeicoloNotAvailable {
-       Veicolo veicolo = Admin.getVeicoloById(id_veicolo);
-       if(veicolo == null) throw new VeicoloNotFound("Il veicolo selezionato è inesistente");
-       if(!veicolo.isDisponibile(start)){
+       Veicolo veicoloDaPrenotare = Admin.getVeicoloById(id_veicolo);
+       if(veicoloDaPrenotare == null) throw new VeicoloNotFound("Il veicolo selezionato è inesistente");
+       if(!veicoloDaPrenotare.isDisponibile(start)){
            throw new VeicoloNotAvailable("Veicolo già prenotato...non disponibile");
        }
-       Noleggio myNoleggio = new Noleggio(veicolo, this);
+       Noleggio myNoleggio = new Noleggio(veicoloDaPrenotare, this);
        Admin.insertNoleggio(myNoleggio);
+       System.out.println("Il noleggio è andato a buon fine");
        return myNoleggio;
    }
 
-   public Double terminaNoleggio(Noleggio noleggio){
-        noleggio.setEnd(LocalDateTime.now());
-        Long minutes = Duration.between(noleggio.getStart(), noleggio.getEnd()).toMinutes();
-        Double costoNoleggio = minutes * noleggio.getVeicolo().getPrezzoNoleggio();
+   public Double terminaNoleggio(Noleggio myNoleggio){
+        myNoleggio.setEnd(LocalDateTime.now());
+        Long durataNoleggio = Duration.between(myNoleggio.getStart(), myNoleggio.getEnd()).toMinutes();
+        Double costoNoleggio = durataNoleggio * myNoleggio.getVeicolo().getPrezzoNoleggio();
+        System.out.println("Il noleggio è terminato");
         return costoNoleggio;
    }
 
@@ -168,6 +171,13 @@ public class Utente {
         return veicoliDisponibili;
    }
 
-
-
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dataDiNascita=" + dataDiNascita +
+                ", codiceFiscale='" + codiceFiscale + '\'' +
+                '}';
+    }
 }

@@ -13,9 +13,12 @@ import java.util.List;
 public class Admin {
 
     private static Admin instance;
+
     private Admin(){};
+
     public static Admin getInstance(){
-        if(instance != null) return instance;
+        if(instance != null)
+            return instance;
         else{
             instance = new Admin();
             return instance;

@@ -15,7 +15,7 @@ public class Patente {
 
 
     public Patente(String numeroPatente, TipoPatente tipoPatente, Utente nomeUtente, LocalDate dataDiScadenza) {
-        Validator.matchingPatterns(numeroPatente, "^[A-Z]{2}\\d{6}[A-Z]\\d{3}$\n");
+        Validator.matchingPatterns(numeroPatente, "^[A-Z]{2}\\d{6}[A-Z]\\d{3}$");
         Validator.requireDateAfter(dataDiScadenza, LocalDate.now());
         Validator.requireNotNull(tipoPatente);
         Validator.requireNotNull(nomeUtente);

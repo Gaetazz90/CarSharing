@@ -43,14 +43,15 @@ public abstract class Veicolo implements Casco{
     }
 
     public Boolean isDisponibile(LocalDateTime time){
-        List<Noleggio> myNoleggi = Admin.getNoleggioByVeicoloId(this.id);
-        for (Noleggio n : myNoleggi){
+        List<Noleggio> noleggiVeicolo = Admin.getNoleggioByVeicoloId(this.id);
+        for (Noleggio n : noleggiVeicolo ){
             if(n.isNoleggioAttivo(time)){
                 return false;
             }
         }
         return true;
     }
+
 
 
 
